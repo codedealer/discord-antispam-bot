@@ -1,0 +1,25 @@
+{
+  "name": "discord-antispam-bot",
+  "version": "1.0.0",
+  "description": "Discord bot to prevent malicious actors from spamming the same message (an ad/scam link) in every channel",
+  "exports": "./index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": ">=16.14"
+  },
+  "author": "Thomas Mello (codedealer)",
+  "license": "GPL-3.0-or-later",
+  "private": false,
+  "type": "module",
+  "dependencies": {
+    "@discordjs/rest": "^1.0.0",
+    "bufferutil": "^4.0.6",
+    "discord-api-types": "^0.36.2",
+    "discord.js": "^14.0.2",
+    "dotenv": "^16.0.1",
+    "lowdb": "^3.0.0",
+    "utf-8-validate": "^5.0.9"
+  }
+}
