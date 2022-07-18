@@ -7,7 +7,7 @@ const client = new Client({ intents: [
   GatewayIntentBits.GuildMessages,
 ] });
 
-const loader = new Loader(Loader.getDirectory('events'));
+const loader = new Loader(Loader.getDirectoryUrl('events'));
 const events = [];
 
 for await (const { default: event } of loader.load()) {

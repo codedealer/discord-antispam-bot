@@ -9,12 +9,17 @@ class Loader {
 
     return dir;
   }
+  static getDirectoryUrl (name, base = import.meta.url) {
+    name = name.endsWith('/') ? `./${name}` : `./${name}/`;
+
+    return new URL(name, base);
+  }
   constructor (dir) {
     this.dir = dir;
   }
   async * load () {
     for (const _module of await fs.readdir(this.dir)) {
-      yield await import(join(this.dir, _module));
+      yield await import(new URL(_module, this.dir));
     }
   }
 }
