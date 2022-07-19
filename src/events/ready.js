@@ -1,6 +1,6 @@
 import DiscordEvent from '../model/DiscordEvent.js'
 
-class ReadyEvent extends DiscordEvent{
+class ReadyEvent extends DiscordEvent {
   execute (client) {
     console.log(`Logged in as ${client.user.tag}!`);
   }

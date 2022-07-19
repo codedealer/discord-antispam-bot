@@ -5,6 +5,7 @@ import DiscordEvent from './model/DiscordEvent.js';
 const client = new Client({ intents: [
   GatewayIntentBits.Guilds,
   GatewayIntentBits.GuildMessages,
+  GatewayIntentBits.MessageContent,
 ] });
 
 const loader = new Loader(Loader.getDirectoryUrl('events'));

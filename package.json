@@ -19,6 +19,7 @@
     "discord-api-types": "^0.36.2",
     "discord.js": "^14.0.2",
     "dotenv": "^16.0.1",
+    "lodash-es": "^4.17.21",
     "lowdb": "^3.0.0",
     "utf-8-validate": "^5.0.9"
   }

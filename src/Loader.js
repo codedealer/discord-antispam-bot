@@ -14,6 +14,9 @@ class Loader {
 
     return new URL(name, base);
   }
+  static getFileUrl (name, base = import.meta.url) {
+    return new URL(name, base);
+  }
   constructor (dir) {
     this.dir = dir;
   }
