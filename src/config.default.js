@@ -3,6 +3,10 @@ export default {
   messages: {
     spam: [
       {
+        /*
+          unique id to discern between different filters
+        */
+        id: 'Link spam prevention',
         enabled: true,
         rateLimit: {
           maxEntries: 1,
@@ -20,6 +24,16 @@ export default {
           (bots usually post in every available channel in rapid succession)
         */
         minChannels: 1,
+        /*
+          action to take when conditions are met
+          its config is included, depends on the action
+        */
+        action: {
+          name: 'warning',
+          mute: true,
+          muteFor: 60*1000,
+          cooldown: false,
+        },
       },
     ],
     /*
@@ -34,7 +48,10 @@ export default {
     their branch stays in memory useless
     the number in miliseconds should be lower (more frequent flushes) on busier servers
   */
-  evictStaleBranchesAfter: 60*1*1000,
+  evictStaleBranchesAfter: 60*10*1000,
   lastEviction: false,
   totalActionsTaken: 0,
+  vanquishMessageChannelId: {
+    ['435583365224071190']: '435583365748621312',
+  },
 }

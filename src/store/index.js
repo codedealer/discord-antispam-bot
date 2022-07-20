@@ -17,6 +17,7 @@ export const config = db;
 
 export const store = {
   guilds: {},
+  actionCache: {},
   flushBranch (guildId, id, timestamp) {
     for (let i = this.guilds[guildId][id].length - 1; i >= 0; i--) {
       if (this.guilds[guildId][id][i].isStale(
@@ -30,7 +31,7 @@ export const store = {
     };
   },
   /*
-    go and evict all the stale entries, this method is slow
+    evict all the stale entries, this method is slow
     and should be used discreetly
   */
   flush (timestamp) {

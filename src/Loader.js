@@ -17,12 +17,18 @@ class Loader {
   static getFileUrl (name, base = import.meta.url) {
     return new URL(name, base);
   }
-  constructor (dir) {
+  constructor (dir, exclude = []) {
     this.dir = dir;
+    this.exclude = exclude;
   }
   async * load () {
-    for (const _module of await fs.readdir(this.dir)) {
-      yield await import(new URL(_module, this.dir));
+    let modules = await fs.readdir(this.dir);
+    if (this.exclude.length) {
+      modules = modules.filter(file => !this.exclude.includes(file));
+    }
+
+    for (const _module of modules) {
+      yield await import(Loader.getFileUrl(_module, this.dir));
     }
   }
 }

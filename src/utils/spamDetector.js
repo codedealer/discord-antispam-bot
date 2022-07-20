@@ -1,6 +1,5 @@
 import { store } from '../store/index.js'
-import _ from '../lang/en.js'
-import { userMention } from '@discordjs/builders'
+import actions from '../actions/index.js'
 
 export default {
   async detect (spamConfig, message) {
@@ -34,10 +33,13 @@ export default {
       }
     };
 
-    if (differentChannels.size < spamConfig.minChannels) return;
+    if (spamConfig > 0 && differentChannels.size < spamConfig.minChannels) return;
     if (finalSelection.length < spamConfig.rateLimit.maxEntries) return;
 
-    let content = _.SpamWarn(userMention(message.author.id));
-    message.channel.send(content);
+    if (!Object.hasOwn(actions, spamConfig.action.name)) {
+      throw new Error(`${spamConfig.action.name} action was configured but it is not supported!`);
+    }
+
+    await actions[spamConfig.action.name].execute(spamConfig, message);
   }
 }

@@ -2,6 +2,7 @@ class Entry {
   constructor (message, timestamp) {
     this.timestamp = timestamp;
     this.channelId = message.channelId;
+    this.messageId = message.id;
     this.content = message.content;
   }
   isStale (timestamp, lifetime) {
