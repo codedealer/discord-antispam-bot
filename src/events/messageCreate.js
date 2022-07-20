@@ -1,10 +1,11 @@
 import DiscordEvent from '../model/DiscordEvent.js'
 import Entry from '../model/Entry.js'
+import detector from '../utils/spamDetector.js'
 import { config, store } from '../store/index.js'
 import { messageGuard } from '../utils/index.js'
 
 class MessageCreateEvent extends DiscordEvent {
-  execute (message) {
+  async execute (message) {
     if (!messageGuard(message)) return;
 
     const id = message.author.id;
@@ -53,6 +54,13 @@ class MessageCreateEvent extends DiscordEvent {
       config.data.lastEviction = timestamp;
       config.write();
     }
+
+    // run heuristics
+    config.data.messages.spam.forEach(async cfg => {
+      if (!cfg.enabled) return;
+
+      await detector.detect(cfg, message);
+    });
   }
 }
 
