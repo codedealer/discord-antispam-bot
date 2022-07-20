@@ -21,7 +21,7 @@ export const store = {
     for (let i = this.guilds[guildId][id].length - 1; i >= 0; i--) {
       if (this.guilds[guildId][id][i].isStale(
           timestamp,
-          config.data.messages.cacheLifetime
+          config.data.messages.cacheTTL
          )) {
         // this and every next item are older than max lifetime
         this.guilds[guildId][id] = this.guilds[guildId][id].slice(i + 1);
@@ -43,7 +43,7 @@ export const store = {
         }
 
         // check the most recent entry
-        if (entries.at(-1).isStale(timestamp, config.data.messages.cacheLifetime)) {
+        if (entries.at(-1).isStale(timestamp, config.data.messages.cacheTTL)) {
           delete idCollection[id];
           break;
         }

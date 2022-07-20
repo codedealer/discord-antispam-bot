@@ -26,7 +26,7 @@ class MessageCreateEvent extends DiscordEvent {
     }
 
     if (!config.data.lastEviction ||
-        timestamp - config.data.lastEviction > config.data.messages.evictStaleBranchesAfter) {
+        timestamp - config.data.lastEviction > config.data.evictStaleBranchesAfter) {
       store.flush(timestamp);
     }
 
