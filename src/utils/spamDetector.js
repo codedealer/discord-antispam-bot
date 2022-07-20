@@ -7,7 +7,7 @@ export default {
     if (message.author.username !== 'totally') return;
 
     // find consecutive messages that satisfy the filter
-    let entries = store[message.guildId][message.author.id];
+    let entries = store.guilds[message.guildId][message.author.id];
 
     // check the rate limit
     if (entries.length < 1 ||

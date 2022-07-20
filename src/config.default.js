@@ -33,7 +33,7 @@ export default {
       their branch stays in memory useless
       the number in miliseconds should be lower (more frequent flushes) on busier servers
     */
-    evictStaleBranchesAfter: 60*10*1000,
+    evictStaleBranchesAfter: 60*1*1000,
   },
   lastEviction: false,
   totalActionsTaken: 0,
