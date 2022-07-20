@@ -7,7 +7,7 @@ export default {
           unique id to discern between different filters
         */
         id: 'Link spam prevention',
-        enabled: true,
+        enabled: false,
         rateLimit: {
           maxEntries: 1,
           /*
@@ -33,6 +33,23 @@ export default {
           mute: true,
           muteFor: 60*1000,
           cooldown: false,
+        },
+      },
+      {
+        /*
+          unique id to discern between different filters
+        */
+        id: 'Link spam banhammer',
+        enabled: true,
+        rateLimit: {
+          maxEntries: 1,
+          timeframe: 15*1000,
+        },
+        contentFilter: 'https?:\/\/.+',
+        minChannels: 1,
+        action: {
+          name: 'ban',
+          deleteMessageDays: 1,
         },
       },
     ],

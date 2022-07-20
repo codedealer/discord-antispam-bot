@@ -23,6 +23,7 @@ class Loader {
   }
   async * load () {
     let modules = await fs.readdir(this.dir);
+
     if (this.exclude.length) {
       modules = modules.filter(file => !this.exclude.includes(file));
     }
