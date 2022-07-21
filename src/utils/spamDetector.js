@@ -35,7 +35,7 @@ export default {
       }
     };
 
-    if (spamConfig > 0 && differentChannels.size < spamConfig.minChannels) return;
+    if (differentChannels.size < spamConfig.minChannels) return;
     if (finalSelection.length < spamConfig.rateLimit.maxEntries) return;
 
     if (!Object.hasOwn(actions, spamConfig.action.name)) {
