@@ -6,10 +6,10 @@ export default {
         /*
           unique id to discern between different filters
         */
-        id: 'Link spam prevention',
-        enabled: false,
+        id: 'Message spam prevention',
+        enabled: true,
         rateLimit: {
-          maxEntries: 1,
+          maxEntries: 4,
           /*
             can't be larger than cacheTTL
           */
@@ -17,8 +17,10 @@ export default {
         },
         /*
           regex to search in a message's content
+          OR
+          <repeat> to search for consequtive messages with the same content
         */
-        contentFilter: 'https?:\/\/.+',
+        contentFilter: '<repeat>',
         /*
           how many channels an author should post to be acted against
           (bots usually post in every available channel in rapid succession)
@@ -32,7 +34,7 @@ export default {
           name: 'warning',
           mute: true,
           muteFor: 60*1000,
-          cooldown: false,
+          cooldown: false, // currently not used
         },
       },
       {
@@ -42,11 +44,11 @@ export default {
         id: 'Link spam banhammer',
         enabled: true,
         rateLimit: {
-          maxEntries: 1,
-          timeframe: 15*1000,
+          maxEntries: 4,
+          timeframe: 20*1000,
         },
         contentFilter: 'https?:\/\/.+',
-        minChannels: 1,
+        minChannels: 4,
         action: {
           name: 'ban',
           deleteMessageDays: 1,

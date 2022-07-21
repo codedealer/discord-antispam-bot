@@ -1,5 +1,6 @@
 import { store } from '../store/index.js'
 import actions from '../actions/index.js'
+import ContentFilter from './ContentFilter.js'
 import { PermissionsBitField } from 'discord.js'
 
 export default {
@@ -16,19 +17,16 @@ export default {
         entries.length < spamConfig.rateLimit.maxEntries) return;
 
     const now = entries.at(-1).timestamp;
-    const r = spamConfig.contentFilter ?
-              new RegExp(spamConfig.contentFilter, 'i') :
-              false;
+    const contentFilter = new ContentFilter(spamConfig.contentFilter);
     const differentChannels = new Set();
     const finalSelection = [];
 
     for (let i = entries.length - 1; i >= 0; i--) {
       differentChannels.add(entries[i].channelId);
 
-      if (!entries[i].isStale(now, spamConfig.rateLimit.timeframe)) {
-        if (r === false || r.test(entries[i].content)) {
-          finalSelection.push(entries[i]);
-        }
+      if (!entries[i].isStale(now, spamConfig.rateLimit.timeframe) &&
+          contentFilter.execute(entries[i].content)) {
+        finalSelection.push(entries[i]);
       } else {
         // we go from recent to old so all the rest are stale
         break;
