@@ -1,12 +1,12 @@
 import { store } from '../store/index.js'
 import actions from '../actions/index.js'
 import ContentFilter from './ContentFilter.js'
-import { isAdmin } from './index.js'
+import { isGuildAdmin, isBotAdmin } from './index.js'
 
 export default {
   async detect (spamConfig, message) {
-    if (isAdmin(message.member)) return;
-    if (message.author.username !== 'totally') return;
+    if (isGuildAdmin(message.member)) return;
+    if (isBotAdmin(message.author)) return;
 
     // find consecutive messages that satisfy the filter
     let entries = store.guilds[message.guildId][message.author.id];

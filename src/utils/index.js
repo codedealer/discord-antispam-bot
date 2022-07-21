@@ -74,6 +74,8 @@ export const vanquish = async (message = false) => {
   }
 }
 
-export const isAdmin = (member) => {
+export const isGuildAdmin = (member) => {
   return member.permissions.has(PermissionsBitField.Flags.Administrator)
 }
+
+export const isBotAdmin = (user) => config.data.administratorId === user.id;
