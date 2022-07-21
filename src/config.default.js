@@ -74,4 +74,5 @@ export default {
     ['435583365224071190']: '435583365748621312',
   },
   administratorId: '347572103756906496',
+  registeredCommands: [],
 }

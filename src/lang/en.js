@@ -6,3 +6,5 @@ export const SpamWarnMute = (mention, duration) => `${mention} you are muted for
 
 export const Vanquished = (tag, total) => `${tag} was vanquished for being a tricky biscuit.
 Total number of vanquished: ${bold(total)}.`;
+
+export const Score = (total) => `Total number of tricky biscuits vanquished: ${bold(total)}.`;
