@@ -43,7 +43,12 @@ export const deleteMessagesFromUser = async (guildId, id, client) => {
   });
 
   for (const [channelId, messageIds] of Object.entries(messages)) {
-    await channels[channelId].bulkDelete(messageIds);
+    try {
+      await channels[channelId].bulkDelete(messageIds);
+    } catch (e) {
+      // 10008 is deleting message that was already deleted
+      if (e.code !== 10008) throw e;
+    }
   }
 
   // reset the store
