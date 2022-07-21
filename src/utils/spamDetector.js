@@ -1,11 +1,11 @@
 import { store } from '../store/index.js'
 import actions from '../actions/index.js'
 import ContentFilter from './ContentFilter.js'
-import { PermissionsBitField } from 'discord.js'
+import { isAdmin } from './index.js'
 
 export default {
   async detect (spamConfig, message) {
-    if (message.member.permissions.has(PermissionsBitField.Flags.Administrator)) return;
+    if (isAdmin(message.member)) return;
     if (message.author.username !== 'totally') return;
 
     // find consecutive messages that satisfy the filter

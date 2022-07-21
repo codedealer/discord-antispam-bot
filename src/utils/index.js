@@ -2,6 +2,7 @@ import { merge } from 'lodash-es'
 import { config, store } from '../store/index.js'
 import defaultConfig from '../config.default.js'
 import { Vanquished } from '../lang/en.js'
+import { PermissionsBitField } from 'discord.js'
 
 export const createConfig = (dbConfig = {}) => {
   return merge(defaultConfig, dbConfig);
@@ -71,4 +72,8 @@ export const vanquish = async (message = false) => {
 
     await channel.send(Vanquished(message.author.tag, config.data.totalActionsTaken));
   }
+}
+
+export const isAdmin = (member) => {
+  return member.permissions.has(PermissionsBitField.Flags.Administrator)
 }
