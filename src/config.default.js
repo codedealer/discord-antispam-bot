@@ -71,15 +71,15 @@ export default {
   lastEviction: false,
   totalActionsTaken: 0,
   vanquishMessageChannelId: {
-    ['435583365224071190']: '435583365748621312',
+    ['guildId']: 'channelId',
   },
   alertMessageChannelId: [
     {
-      guildId: '435583365224071190',
-      channelId: '435583365748621312',
+      guildId: '',
+      channelId: '',
     },
   ],
-  administratorId: '347572103756906496',
+  administratorId: '',
   registeredCommands: [],
   logFile: '../log.json',
 }
