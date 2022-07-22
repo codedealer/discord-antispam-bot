@@ -70,15 +70,29 @@ export default {
   evictStaleBranchesAfter: 60*10*1000,
   lastEviction: false,
   totalActionsTaken: 0,
+  /*
+    The bot will send a message to the designated channel
+    each time it takes a ban action on the given server
+  */
   vanquishMessageChannelId: {
     ['guildId']: 'channelId',
   },
+  /*
+    Mostly for development: the bot will alert to this channel
+    when an error occurs (if it's able to send messages)
+    or in the instance of attempt at unauthorized access to a command
+  */
   alertMessageChannelId: [
     {
       guildId: '',
       channelId: '',
     },
   ],
+  /*
+    The discord user id of the administrator of the bot.
+    This id and the server's administrator are immune to bot's actions
+    and can run its commands regardless of the permissions
+  */
   administratorId: '',
   registeredCommands: [],
   logFile: '../log.json',
