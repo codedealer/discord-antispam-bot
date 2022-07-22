@@ -8,3 +8,7 @@ export const Vanquished = (tag, total) => `${tag} was vanquished for being a tri
 Total number of vanquished: ${bold(total)}.`;
 
 export const Score = (total) => `Total number of tricky biscuits vanquished: ${bold(total)}.`;
+
+export const NoPermCommand = () => `You have no permissions to use this command. This incident will be reported.`;
+
+export const MessageRemoved = () => `Message was removed`;
