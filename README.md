@@ -29,7 +29,7 @@ pm2 start index.js
 pm2 startup # follow instructions it provides
 pm2 save
 ```
-This ensures the bot is restarted in the case crush occures and the service is started when the server itself is rebooted (e.g. in case of an outage).
+This ensures the bot is restarted in case a crash occures and the service is started when the server itself is rebooted (e.g. in case of an outage).
 
 ## Extending
 New commands can be added to `src/commands` folder. As long as they extend `DiscordCommand` class they will be automatically registered and hooked up.
