@@ -78,6 +78,8 @@ export const sendAlert = async (client, content) => {
   if (config.data.alertMessageChannelId.length === 0) return;
 
   const { guildId, channelId } = config.data.alertMessageChannelId[0];
+  if (!guildId || !channelId) return;
+
   const guild = client.guilds.cache.get(guildId);
   if (!guild) throw new Error(`Alert channel not found: ${guildId} is missing from guilds cache`);
   const channel = client.channels.cache.get(channelId);
