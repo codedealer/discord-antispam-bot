@@ -4,6 +4,7 @@ import { config } from '../store/index.js'
 import { Collection } from 'discord.js'
 import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v10';
+import logger from '../logger.js'
 
 const loader = new Loader(Loader.getDirectoryUrl('commands'), ['index.js']);
 
@@ -24,7 +25,7 @@ if (registeredCommands.length !== commands.size ||
 }
 
 if (needsCommandRegistration) {
-  console.log('Registering applications commands');
+  logger.info('Registering applications commands');
 
   const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
   try {
@@ -39,10 +40,10 @@ if (needsCommandRegistration) {
     config.data.registeredCommands = response.map(data => data.name);
     config.write();
   } catch (e) {
-    console.error(e);
+    logger.error(e);
   }
 } else {
-  console.log('No need for command regitration');
+  logger.info('No need for command regitration');
 }
 
 export default commands;

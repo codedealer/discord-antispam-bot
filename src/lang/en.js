@@ -11,4 +11,8 @@ export const Score = (total) => `Total number of tricky biscuits vanquished: ${b
 
 export const NoPermCommand = () => `You have no permissions to use this command. This incident will be reported.`;
 
+export const NotBannable = (member) => `Ban was requested for ${member.user.tag} but the permissions are insufficient`;
+
 export const MessageRemoved = () => `Message was removed`;
+
+export const UnauthorizedLog = (command, username) => `Unauthorized access: command: ${command}, user: ${username}`;

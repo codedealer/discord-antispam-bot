@@ -74,6 +74,18 @@ export const vanquish = async (message = false) => {
   }
 }
 
+export const sendAlert = async (client, content) => {
+  if (config.data.alertMessageChannelId.length === 0) return;
+
+  const { guildId, channelId } = config.data.alertMessageChannelId[0];
+  const guild = client.guilds.cache.get(guildId);
+  if (!guild) throw new Error(`Alert channel not found: ${guildId} is missing from guilds cache`);
+  const channel = client.channels.cache.get(channelId);
+  if (!channel) throw new Error(`Alert channel not found: ${channelId} is missing from channels cache`);
+
+  await channel.send(content);
+}
+
 export const isGuildAdmin = (member) => {
   return member.permissions.has(PermissionsBitField.Flags.Administrator)
 }

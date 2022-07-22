@@ -1,7 +1,7 @@
 import DiscordCommand from '../model/DiscordCommand.js'
 import { SlashCommandBuilder } from '@discordjs/builders'
 import { isGuildAdmin, isBotAdmin, vanquish } from '../utils/index.js'
-import { NoPermCommand, Vanquished } from '../lang/en.js'
+import { NoPermCommand, Vanquished, NotBannable } from '../lang/en.js'
 import { config } from '../store/index.js'
 //import { CommandInteractionOptionResolver } from 'discord.js'
 
@@ -27,13 +27,15 @@ class VanquishCommand extends DiscordCommand {
         ephemeral: true,
       });
 
+      await this.reportUnautorized(interaction);
+
       return;
     }
 
     const member = interaction.options.getMember('target');
     if (!member.bannable) {
       await interaction.reply({
-        content: `Ban was requested for ${member.user.tag} but the permissions are insufficient`,
+        content: NotBannable(member),
         ephemeral: true,
       });
 

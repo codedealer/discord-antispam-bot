@@ -73,6 +73,13 @@ export default {
   vanquishMessageChannelId: {
     ['435583365224071190']: '435583365748621312',
   },
+  alertMessageChannelId: [
+    {
+      guildId: '435583365224071190',
+      channelId: '435583365748621312',
+    },
+  ],
   administratorId: '347572103756906496',
   registeredCommands: [],
+  logFile: '../log.json',
 }

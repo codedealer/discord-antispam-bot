@@ -1,7 +1,10 @@
 import DiscordCommand from '../model/DiscordCommand.js'
 import { ContextMenuCommandBuilder } from '@discordjs/builders'
 import { ApplicationCommandType } from 'discord-api-types/v10'
-import { NoPermCommand, MessageRemoved } from '../lang/en.js'
+import {
+  NoPermCommand,
+  MessageRemoved,
+} from '../lang/en.js'
 import { isGuildAdmin, isBotAdmin } from '../utils/index.js'
 
 class RemoveCommand extends DiscordCommand {
@@ -31,6 +34,8 @@ class RemoveCommand extends DiscordCommand {
       content: NoPermCommand(),
       ephemeral: true,
     });
+
+    await this.reportUnautorized(interaction);
   }
 }
 
