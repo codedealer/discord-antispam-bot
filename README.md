@@ -1,11 +1,11 @@
 # Spam Vanquisher
 Discord bot that prevents automated message spam on the server.
-The bot works by monitoring the messages in the server's channels following preset rules. When a rule is triggered an action is taken against the bad actor. Disabling communications and banning is supported but the set of actions can be expanded by placing new files in `src/actions` folder.
+The bot works by monitoring the messages in the server's channels following preset rules. When a rule is triggered an action is taken against the bad actor. Disabling communications and banning is supported but the set of actions can be expanded by placing new files in `src/actions` folder (more on extending below).
 
-The bot also supports slash commands for manual ban and adds a new context menu button for messages to manually remove messages that might have slipped the automatic detection. (This features are currently designed with testing out the automatic measures in mind and commands will only work for the server's administrator and the bot administrator)
+The bot also supports slash commands for manual ban and adds a new context menu button for messages to manually remove messages that might have slipped the automatic detection. (These features are currently designed with testing out the automatic measures in mind and commands will only work for the server's administrator and the bot administrator)
 
 ## Concept
-The most basic idea of how it can be used is to monitor the members' messaging activity throughout the server. If an actor posts X amount of messages across Y amount of channels per Z seconds it is most likely an automated behavior (the default baseline is 4 messages across 4 channels per 20 seconds) so the bot takes action (ban by default).
+The most basic idea of how it can be used is to monitor the members' messaging activity throughout the server. If an actor posts X amount of messages across Y amount of channels in Z seconds it is most likely an automated behavior (the default baseline is 4 messages across 4 channels in 20 seconds) so the bot takes action (ban by default).
 
 It can also monitor the message contents preventing flood of identical messages or messages that match a certain regex (a link by default).
 
