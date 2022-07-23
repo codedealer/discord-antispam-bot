@@ -24,7 +24,8 @@ class Loader {
   async * load () {
     let modules = await fs.readdir(this.dir);
 
-    modules = modules.filter(file => !this.exclude.includes(file));
+    modules = modules.filter(file => (!this.exclude.includes(file) &&
+                                      file.endsWith('.js')));
 
     for (const _module of modules) {
       yield await import(Loader.getFileUrl(_module, this.dir));
