@@ -89,7 +89,7 @@ export const sendAlert = async (client, content) => {
 }
 
 export const isGuildAdmin = (member) => {
-  return member.permissions.has(PermissionsBitField.Flags.Administrator)
+  return member?.permissions?.has(PermissionsBitField.Flags.Administrator)
 }
 
 export const isBotAdmin = (user) => (user.id &&
