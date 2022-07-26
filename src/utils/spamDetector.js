@@ -36,10 +36,10 @@ export default {
     if (differentChannels.size < spamConfig.minChannels) return;
     if (finalSelection.length < spamConfig.rateLimit.maxEntries) return;
 
-    if (!Object.hasOwn(actions, spamConfig.action.name)) {
+    if (!actions.has(spamConfig.action.name)) {
       throw new Error(`${spamConfig.action.name} action was configured but it is not supported!`);
     }
 
-    await actions[spamConfig.action.name].execute(spamConfig, message);
+    await actions.get(spamConfig.action.name).execute(spamConfig, message);
   }
 }
