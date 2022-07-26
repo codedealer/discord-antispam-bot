@@ -1,6 +1,6 @@
 {
   "name": "discord-antispam-bot",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Discord bot to prevent malicious actors from spamming the same message (an ad/scam link) in every channel",
   "exports": "./index.js",
   "scripts": {
